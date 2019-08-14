@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Contains webform_presave.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\webform\WebformSubmissionInterface;
+/**
+ * Implements hook_help().
+ */
+function webform_presave_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the webform_presave module.
+    case 'help.page.webform_presave':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('this module is used to change the timestamp before saving the submission') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+
+function webform_presave_webform_submission_presave(\Drupal\webform\Entity\WebformSubmission $submission) {
+  $submissionCreated = $submission->getCreatedTime();
+  $submissionCreatedChnaged = format_date($submissionCreated, 'custom_date');
+
+  $a = strptime($submissionCreatedChnaged, '%Y-%m-%d');
+  $timestamp = mktime(0, 0, 0, $a['tm_mon']+1, $a['tm_mday'], $a['tm_year']+1900);
+  $submission->setCreatedTime($timestamp);
+
+}

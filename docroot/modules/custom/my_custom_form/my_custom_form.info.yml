@@ -1,0 +1,5 @@
+name: 'My Custom Form'
+type: module
+description: 'This is a custom form used for taking the values and storing it in database table.'
+core: 8.x
+package: 'Custom'

@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains my_contact_form.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function my_contact_form_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the my_contact_form module.
+    case 'help.page.my_contact_form':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This is a custom form created by me') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function my_contact_form_theme() {
+  return [
+    'my_contact_form' => [
+      'render element' => 'children',
+    ],
+  ];
+}

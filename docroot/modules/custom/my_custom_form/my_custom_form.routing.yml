@@ -1,0 +1,15 @@
+my_custom_form.custom_form:
+  path: '/my-custom-form'
+  defaults:
+    _title: 'My Custom Form'
+    _form: '\Drupal\my_custom_form\Form\myCustomForm'
+  requirements:
+    _permission: 'access_content'
+
+my_custom_form.custom_display:
+  path: '/my-custom-form-submissions'
+  defaults:
+    _title: 'My Custom Form Submissions'
+    _controller: '\Drupal\my_custom_form\Controller\myCustomFormDisplay::_formSubmissions'
+  requirements:
+    _permission: 'access_content'

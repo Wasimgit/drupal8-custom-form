@@ -1,0 +1,5 @@
+name: 'Custom Breadcrumbs'
+type: module
+description: 'This Module is used to create custom breadcrumb links'
+core: 8.x
+package: 'Custom'

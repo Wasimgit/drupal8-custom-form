@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_breadcrumbs.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function custom_breadcrumbs_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the custom_breadcrumbs module.
+    case 'help.page.custom_breadcrumbs':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This Module is used to create custom breadcrumb links') . '</p>';
+      return $output;
+
+    default:
+  }
+}

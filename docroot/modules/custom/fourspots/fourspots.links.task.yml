@@ -1,0 +1,27 @@
+# Development routing definition
+development.settings_tab:
+  route_name: development.settings
+  title: 'Settings'
+  base_route: development.settings
+
+entity.development.canonical:
+  route_name: entity.development.canonical
+  base_route: entity.development.canonical
+  title: 'View'
+
+entity.development.edit_form:
+  route_name: entity.development.edit_form
+  base_route: entity.development.canonical
+  title: 'Edit'
+
+entity.development.version_history:
+  route_name: entity.development.version_history
+  base_route: entity.development.canonical
+  title: 'Revisions'
+
+entity.development.delete_form:
+  route_name:  entity.development.delete_form
+  base_route:  entity.development.canonical
+  title: Delete
+  weight: 10
+

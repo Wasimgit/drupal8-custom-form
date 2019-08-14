@@ -1,0 +1,14 @@
+
+# Development menu items definition
+entity.development.collection:
+  title: 'Development list'
+  route_name: entity.development.collection
+  description: 'List Development entities'
+  parent: system.admin_structure
+  weight: 100
+
+development.admin.structure.settings:
+  title: 'Development settings'
+  description: 'Configure Development entities'
+  route_name: development.settings
+  parent: system.admin_structure

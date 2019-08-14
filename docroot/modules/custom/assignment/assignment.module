@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * Contains assignment.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function assignment_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the assignment module.
+    case 'help.page.assignment':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module is used to add extra field in Basic Site Settings and save that field in the DB.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function assignment_theme() {
+  return [
+    'assignment' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function assignment_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+//  Checking Form System Site Information Settings
+   if($form_id == 'system_site_information_settings') {
+
+    // Wrap the Site Wide API Field with Fieldset
+     $form['sitewide'] = array(
+        '#type'  => 'fieldset',
+        '#title' => t('Site Wide API Key'),
+      );
+
+    //Adding the Site Wide API Key Field
+     $form['sitewide']['siteapikey'] = array(
+   		'#type' => 'textfield',
+   		'#title' => t('Site API Key'),
+   		'#description' => t('This is the Site Wide API Key, please insert the Key'),
+      '#default_value' => !empty(\Drupal::state()->get('siteapikey')) ? \Drupal::state()->get('siteapikey') : 'No API Key Yet',
+   	);
+
+    // site wide API key submit form handle
+    $form['#submit'][] = 'sitewideapikey_form_submit';
+    $form['actions']['#type'] = 'actions';
+    $form['actions']['submit'] = [
+          '#type' => 'submit',
+          '#value' => t('Update Configuration'),
+    ];
+  }
+}
+
+// handle form submition
+
+function sitewideapikey_form_submit($form, &$form_state){
+
+        // Getting the form values
+        $values = $form_state->getValues();
+
+        // Getting the siteapikey value
+        $siteapikey = $values['siteapikey'];
+
+        //Stored the state as sytem variable
+        $siteapikeyStored = \Drupal::state()->set('siteapikey', $siteapikey);
+
+        //Checking if the value is set, then display the message with field value
+        if ( isset($siteapikey) ){
+            \Drupal::messenger()->addMessage(t(('Site API Key has been stored with value as ') . $siteapikey));
+        }
+}

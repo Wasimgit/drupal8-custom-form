@@ -1,0 +1,5 @@
+name: 'My Contact Form'
+type: module
+description: 'This is a custom form created by me'
+core: 8.x
+package: 'Custom'
