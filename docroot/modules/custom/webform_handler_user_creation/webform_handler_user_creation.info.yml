@@ -1,7 +1,0 @@
-name: 'webform handler user creation'
-type: module
-description: 'This module will add user creation handle to the webform'
-dependencies:
-  - webform
-core: 8.x
-package: '4spots'

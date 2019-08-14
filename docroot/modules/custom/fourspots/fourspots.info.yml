@@ -1,5 +1,0 @@
-name: '4spots'
-type: module
-description: 'this is a test module'
-core: 8.x
-package: 'Custom'

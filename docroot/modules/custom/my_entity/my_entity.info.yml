@@ -1,5 +1,0 @@
-name: My Entity
-type: module
-description: 'My Basic Test Entity'
-package: custom
-core: 8.x
